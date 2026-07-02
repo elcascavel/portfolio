@@ -1,55 +1,58 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "vcs": {
-    "enabled": false,
-    "clientKind": "git",
-    "useIgnoreFile": false
-  },
-  "files": {
-    "ignoreUnknown": false,
-    "ignore": [
-      "dist/*",
-      "node_modules/**/*",
-      "tests",
-      "**/*.test.ts",
-      "**/*.d.ts",
-      "/*.js",
-      "/*.cjs",
-      "/*.md",
-      "/*.json",
-      "/*.mjs",
-      "/*.yml",
-      ".yarn/*",
-      "internals/*",
-      "public/*",
-      ".vscode",
-      ".next",
-      ".circleci"
-    ]
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "tab"
-  },
-  "organizeImports": {
-    "enabled": true
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "suspicious": {
-        "noConsoleLog": "info"
-      },
-      "a11y": { "recommended": true, "noSvgWithoutTitle": "off" }
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "enabled": true,
-      "quoteStyle": "double",
-      "semicolons": "always",
-      "arrowParentheses": "always"
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.5.2/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!**/dist/**/*",
+			"!**/node_modules/**/*",
+			"!**/tests",
+			"!**/*.test.ts",
+			"!**/*.d.ts",
+			"!**//**/*.js",
+			"!**//**/*.cjs",
+			"!**//**/*.md",
+			"!**//**/*.json",
+			"!**//**/*.mjs",
+			"!**//**/*.yml",
+			"!**/.yarn/**/*",
+			"!**/internals/**/*",
+			"!**/public/**/*",
+			"!**/.vscode",
+			"!**/.next",
+			"!**/.circleci",
+			"!app/global.css"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"suspicious": {
+				"noConsole": {
+					"level": "info",
+					"options": { "allow": ["log", "warn", "error"] }
+				}
+			},
+			"a11y": { "preset": "recommended", "noSvgWithoutTitle": "off" }
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"arrowParentheses": "always"
+		}
+	}
 }
