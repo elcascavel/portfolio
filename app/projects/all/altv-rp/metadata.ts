@@ -9,6 +9,6 @@ export const metadata = {
     alt: "Our would-be alt:V RP server logo",
   },
   published: true,
-  featured: true,
+  featured: false,
   tags: ["javascript", "gta", "alt-v"],
 };

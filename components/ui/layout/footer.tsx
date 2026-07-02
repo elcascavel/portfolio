@@ -1,8 +1,7 @@
-import { socialItems } from "@/lib/config/socialItems";
 import type React from "react";
 import Socials from "../socials";
 
-const Header: React.FC = () => {
+const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
@@ -13,4 +12,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default Footer;

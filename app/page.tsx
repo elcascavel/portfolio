@@ -69,7 +69,7 @@ export default function GitHubStats() {
                       key={commit.sha}
                       className="flex items-center gap-1 mb-1 overflow-hidden min-w-0"
                     >
-                      <span className="font-bold whitespace-nowrap flex-shrink-0">
+                      <span className="font-bold whitespace-nowrap shrink-0">
                         {commit.repo}:
                       </span>{" "}
                       <a

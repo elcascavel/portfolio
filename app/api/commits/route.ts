@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const REPOS = ["elcascavel/holt", "elcascavel/ResumosCM", "elcascavel/Snake"];
+const REPOS = ["elcascavel/holt", "elcascavel/ResumosCM", "Members-Only-GTA/Achievements.SA"];
 
 export async function GET() {
   try {
