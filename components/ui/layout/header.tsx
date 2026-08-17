@@ -5,6 +5,7 @@ import Link from "next/link";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { navItems } from "@/lib/config/navItems";
+import { cn } from "@/lib/utils";
 
 const Header: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -20,11 +21,12 @@ const Header: React.FC = () => {
 
 	return (
 		<header
-			className={`header top-0 z-20 flex h-24 items-center rounded-b-lg justify-between p-5 select-none transition-all duration-300 md:sticky ${
+			className={cn(
+				"header top-0 z-20 flex h-24 items-center rounded-b-lg justify-between p-5 select-none transition-all duration-300 md:sticky",
 				isScrolled
-					? "backdrop-blur-md bg-drac-nosferatu-800/30 "
-					: "bg-drac-nosferatu-800 shadow-lg"
-			}`}
+					? "backdrop-blur-md bg-drac-nosferatu-800/30"
+					: "bg-drac-nosferatu-800 shadow-lg",
+			)}
 		>
 			<div className="flex items-center gap-5">
 				<Link

@@ -38,7 +38,9 @@ export interface ProjectLink {
 	url: string;
 }
 
+export type StatIcon = "github" | "waka" | "commits" | "website";
+
 export interface Stats {
-	icon: string;
+	icon: StatIcon;
 	text: React.ReactNode;
 }

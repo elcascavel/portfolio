@@ -3,8 +3,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next/types";
-import Footer from "../components/ui/layout/footer";
-import Header from "../components/ui/layout/header";
+import Footer from "@/components/ui/layout/footer";
+import Header from "@/components/ui/layout/header";
+import { cn } from "@/lib/utils";
 import { SITE_URL } from "./sitemap";
 
 export const metadata: Metadata = {
@@ -24,8 +25,6 @@ export const metadata: Metadata = {
 	},
 };
 
-const cx = (...classes: string[]) => classes.filter(Boolean).join(" ");
-
 const jetBrains = JetBrains_Mono({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800"],
@@ -39,7 +38,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={cx("scrollbar min-h-screen", jetBrains.className)}
+			className={cn("scrollbar min-h-screen", jetBrains.className)}
 		>
 			<body className="mx-auto bg-drac-nosferatu-900 text-drac-aro-50 flex min-h-screen max-w-[90%] flex-col md:max-w-[80%]">
 				<Header />

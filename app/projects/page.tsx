@@ -1,9 +1,11 @@
 import { IconTool } from "@tabler/icons-react";
+import ProjectCard from "@/components/ui/project-card";
 import SectionTitle from "@/components/ui/section-title";
-import { projects } from "@/lib/config/getProjects";
-import ProjectCard from "../../components/ui/project-card";
+import { getProjects } from "@/lib/config/getProjects";
 
 export default async function Page() {
+	const projects = await getProjects();
+
 	return (
 		<div className="p-5">
 			<SectionTitle icon={IconTool}>Projects</SectionTitle>

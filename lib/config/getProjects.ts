@@ -1,20 +1,21 @@
-import { metadata as achievementsSaMetadata } from "@/app/projects/all/achievements-sa/metadata";
-import { metadata as altvRpMetadata } from "@/app/projects/all/altv-rp/metadata";
-import { metadata as gtaApiMetadata } from "@/app/projects/all/gta-api/metadata";
-import { metadata as gtaBbMetadata } from "@/app/projects/all/gta-bb/metadata";
-import { metadata as necmMetadata } from "@/app/projects/all/necm/metadata";
+import fs from "node:fs/promises";
+import path from "node:path";
+import type { ProjectMetadata } from "@/lib/types/common";
 
-export const projects = [
-	achievementsSaMetadata,
-	gtaBbMetadata,
-	altvRpMetadata,
-	gtaApiMetadata,
-	necmMetadata,
-]
-	.filter((p) => p.published)
-	.map((p) => ({
-		...p,
-		slug: `all/${p.slug}`,
-	}));
+const PROJECTS_DIR = path.join(process.cwd(), "app", "projects", "all");
 
-export const featuredProjects = projects.filter((p) => p.featured);
+export async function getProjects(): Promise<ProjectMetadata[]> {
+	const entries = await fs.readdir(PROJECTS_DIR, { withFileTypes: true });
+	const slugs = entries
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => entry.name);
+
+	const modules = await Promise.all(
+		slugs.map((slug) => import(`@/app/projects/all/${slug}/metadata`)),
+	);
+
+	return modules
+		.map((mod, i) => ({ ...mod.metadata, slug: `all/${slugs[i]}` }))
+		.filter((project) => project.published)
+		.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+}

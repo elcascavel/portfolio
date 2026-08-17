@@ -1,9 +1,11 @@
 import { IconNews } from "@tabler/icons-react";
 import BlogPostCard from "@/components/ui/blog-card";
 import SectionTitle from "@/components/ui/section-title";
-import { posts } from "@/lib/config/getPosts";
+import { getPosts } from "@/lib/config/getPosts";
 
 export default async function Page() {
+	const posts = await getPosts();
+
 	return (
 		<div className="p-5">
 			<SectionTitle icon={IconNews}>Posts</SectionTitle>

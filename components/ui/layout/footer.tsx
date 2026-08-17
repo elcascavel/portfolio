@@ -1,5 +1,5 @@
 import type React from "react";
-import Socials from "../socials";
+import Socials from "@/components/ui/socials";
 
 const Footer: React.FC = () => {
 	const year = new Date().getFullYear();

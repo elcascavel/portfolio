@@ -4,21 +4,26 @@ import IntroContent from "@/app/content/intro.mdx";
 import NameTransition from "@/components/ui/name-transition";
 import ProjectCard from "@/components/ui/project-card";
 import SectionTitle from "@/components/ui/section-title";
-import { featuredProjects } from "@/lib/config/getProjects";
+import StatsGrid from "@/components/ui/stats";
+import { getProjects } from "@/lib/config/getProjects";
 import {
 	getGithubStats,
 	getLatestCommits,
 	getWakatimeStats,
 } from "@/lib/stats";
-import StatsGrid from "../components/ui/stats";
-import type { Stats } from "../lib/types/common";
+import type { Stats } from "@/lib/types/common";
+import { cn } from "@/lib/utils";
 
 export default async function Home() {
-	const [githubStats, wakatimeStats, latestCommits] = await Promise.all([
-		getGithubStats(),
-		getWakatimeStats(),
-		getLatestCommits(),
-	]);
+	const [projects, githubStats, wakatimeStats, latestCommits] =
+		await Promise.all([
+			getProjects(),
+			getGithubStats(),
+			getWakatimeStats(),
+			getLatestCommits(),
+		]);
+
+	const featuredProjects = projects.filter((project) => project.featured);
 
 	const stats: Stats[] = [];
 
@@ -140,11 +145,10 @@ export default async function Home() {
 					</Link>
 				</div>
 				<div
-					className={`
-    grid gap-6 mt-8
-    grid-cols-1
-    ${featuredProjects.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2"}
-  `}
+					className={cn(
+						"grid gap-6 mt-8 grid-cols-1",
+						featuredProjects.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2",
+					)}
 				>
 					{featuredProjects.map((project) => (
 						<ProjectCard key={project.slug} project={project} />
