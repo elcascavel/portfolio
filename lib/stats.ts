@@ -1,7 +1,7 @@
 const GITHUB_USERNAME = "elcascavel";
 const COMMIT_REPOS = [
 	"elcascavel/holt",
-	"elcascavel/ResumosCM",
+	"elcascavel/Achievements.SA",
 	"elcascavel/Snake",
 ];
 
